@@ -4,8 +4,9 @@ import type { Landmark } from "./features";
 // Both the wasm runtime and the model are served locally (see
 // scripts/copy-wasm.mjs and public/models/), so the app works offline and the
 // wasm always matches the installed @mediapipe/tasks-vision version.
-const WASM_URL = "/wasm";
-const MODEL_URL = "/models/hand_landmarker.task";
+// BASE_URL keeps the paths correct when hosted under a subpath (GitHub Pages).
+const WASM_URL = `${import.meta.env.BASE_URL}wasm`;
+const MODEL_URL = `${import.meta.env.BASE_URL}models/hand_landmarker.task`;
 
 export interface TrackedHand {
   /** Normalized image-space landmarks (0..1), used for drawing. */
