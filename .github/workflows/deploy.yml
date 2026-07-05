@@ -22,7 +22,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build -- --base=/rechord/
+      # Relative base so the site works from any URL prefix (GitHub Pages,
+      # raw.githack.com, local preview).
+      - run: npm run build -- --base=./
       # Publishing to a gh-pages branch auto-enables GitHub Pages for the
       # repo — no manual settings step needed.
       - uses: peaceiris/actions-gh-pages@v4

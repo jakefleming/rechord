@@ -4,6 +4,15 @@ Point your webcam at your fretting hand and **rechord** tells you what guitar
 chord you're playing — entirely in the browser, no server, no data leaves your
 machine.
 
+**▶ Use it now:** <https://raw.githack.com/jakefleming/rechord/gh-pages/index.html>
+
+Every push automatically rebuilds the site onto the `gh-pages` branch (see
+`.github/workflows/deploy.yml`). To also serve it at
+`https://jakefleming.github.io/rechord/`, enable Pages once in
+[Settings → Pages](https://github.com/jakefleming/rechord/settings/pages) by
+picking the `gh-pages` branch as the source — GitHub doesn't allow that switch
+to be flipped by automation.
+
 ## How it works
 
 1. **Hand tracking** — [MediaPipe Hand Landmarker](https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker)
