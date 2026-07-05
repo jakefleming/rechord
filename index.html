@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rechord — guitar chord recognition</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <h1>re<span class="accent">chord</span></h1>
+        <p class="tagline">show your fretting hand to the camera — get the chord</p>
+      </header>
+
+      <section class="stage">
+        <div class="video-wrap" id="video-wrap">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="overlay"></canvas>
+          <div id="loading" class="loading">loading hand tracker…</div>
+          <div id="chord-display" class="chord-display" hidden>
+            <div id="chord-name" class="chord-name">—</div>
+            <div class="confidence-track"><div id="confidence-bar" class="confidence-bar"></div></div>
+          </div>
+          <div id="practice-banner" class="practice-banner" hidden>
+            <span>play</span>
+            <strong id="practice-target">C</strong>
+            <span id="practice-status"></span>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <div class="panel-section">
+            <h2>Fretting hand</h2>
+            <div class="seg" role="group">
+              <button id="hand-left" class="seg-btn active" type="button">Left</button>
+              <button id="hand-right" class="seg-btn" type="button">Right</button>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h2>Train chords</h2>
+            <p class="hint">
+              Hold a chord shape steady, then press <em>Record</em> to capture
+              samples of it. ~2 recordings per chord from slightly different
+              angles works well.
+            </p>
+            <div class="train-row">
+              <select id="chord-select"></select>
+              <button id="add-chord" type="button" title="Add a chord name">+</button>
+              <button id="record" type="button" class="primary">● Record</button>
+            </div>
+            <div id="record-progress" class="record-progress" hidden>
+              <div id="record-progress-bar"></div>
+            </div>
+            <ul id="sample-list" class="sample-list"></ul>
+          </div>
+
+          <div class="panel-section">
+            <h2>Practice</h2>
+            <p class="hint">rechord calls out chords; hold each one until it turns green.</p>
+            <button id="practice-toggle" type="button">Start practice</button>
+          </div>
+
+          <div class="panel-section">
+            <h2>Data</h2>
+            <div class="data-row">
+              <button id="export" type="button">Export</button>
+              <button id="import" type="button">Import</button>
+              <button id="clear" type="button" class="danger">Clear all</button>
+              <input id="import-file" type="file" accept="application/json" hidden />
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <footer class="statusbar">
+        <span id="status">starting camera…</span>
+      </footer>
+    </main>
+  </body>
+</html>
